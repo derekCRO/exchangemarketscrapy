@@ -1,0 +1,14 @@
+--environment
+install chrome
+install python 2.7
+install pywin32
+pip install scrapy
+pip install selenium
+
+
+--run
+click run.bat
+
+--run daily a day
+please refer the docment.
+http://www.web-site-scripts.com/knowledge-base/article/AA-00487/0/Setup-Cron-job-on-Windows-7-Vista-2008.html
