@@ -49,7 +49,7 @@ class WalmartSpider(scrapy.Spider):
             sIndex=0
             sPage=0
             
-            fieldnames = ["Marketplace", "ListingTitle", "BusinessName", "AskingPrice", "NetProfit", "GrossRevenue", "Inventory", "averagesales", "sessions", "Description", "BusinessWebsite","ListingLink","updatetime"]
+            fieldnames = ["Marketplace", "ListingTitle", "BusinessName", "AskingPrice", "NetProfit", "GrossRevenue", "Inventory", "averagesales", "sessions","lastxmonth", "Description", "BusinessWebsite","ListingLink","updatetime"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames, lineterminator='\n')
             writer.writeheader()
             csvfile.close() 
@@ -120,10 +120,10 @@ class WalmartSpider(scrapy.Spider):
                     item['sessions'] = ""
                     pass
                 try:
-                    item['sessions'] = self.driver.find_elements_by_xpath("//section[@class='section section--tight'][2]/div[@class='grid'][3]/div[@class='grid__item']/div[@class='block gutter-bottom']/div[@class='block__content gutter-bottom--reset']/p[@class='heading--3 font-regular']/span[@class='text-standout']")[0].text
+                    item['lastxmonth'] = self.driver.find_elements_by_xpath("//section[@class='section section--tight']/section[@class='section section--tight section--padding-bottom-only']/div[@class='sidebar-box seller background-off-white']/div[@class='seller__content'][1]/p[@class='gutter-bottom--reset']")[0].text
                     pass
                 except Exception as e:
-                    item['sessions'] = ""
+                    item['lastxmonth'] = ""
                     pass
                 try:
                     Description = self.driver.find_elements_by_xpath("//section[@class='section section--tight']/section[@class='section section--tight'][1]/div[@class='long-form-content']/p")[0].text
@@ -165,7 +165,7 @@ class WalmartSpider(scrapy.Spider):
                
                 with open('result/'+str(fmt)+'.csv', 'a') as csvfile:
                  
-                    fieldnames = ["Marketplace", "ListingTitle", "BusinessName", "AskingPrice", "NetProfit", "GrossRevenue", "Inventory", "averagesales", "sessions", "Description", "BusinessWebsite", "ListingLink","updatetime"]
+                    fieldnames = ["Marketplace", "ListingTitle", "BusinessName", "AskingPrice", "NetProfit", "GrossRevenue", "Inventory", "averagesales", "sessions","lastxmonth", "Description", "BusinessWebsite", "ListingLink","updatetime"]
                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames, lineterminator='\n')
                     writer.writerow(item)
                     csvfile.close() 

@@ -20,6 +20,7 @@ class WalmartItem(scrapy.Item):
     Inventory = scrapy.Field()
     averagesales = scrapy.Field()
     sessions = scrapy.Field()
+    lastxmonth=scrapy.Field()
     Description = scrapy.Field()
     BusinessWebsite = scrapy.Field()
     ListingLink = scrapy.Field()
